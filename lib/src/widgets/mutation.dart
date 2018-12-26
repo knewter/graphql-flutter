@@ -96,7 +96,9 @@ class MutationState extends State<Mutation> {
         shouldCreateNewObservable = false;
       }
 
-      observableQuery.close();
+      if(observableQuery.controller.isPaused || observableQuery.controller.isClosed){
+        observableQuery.close();
+      }
     }
 
     if (shouldCreateNewObservable) {
